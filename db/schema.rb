@@ -10,6 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20180317141856) do
+
+  create_table "movies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "title"
+    t.text "description"
+    t.string "director"
+    t.string "stars"
+    t.datetime "release"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end
