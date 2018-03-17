@@ -16,3 +16,4 @@
 //= require plugins.main
 //= require plugins.main
 //= require_tree .
+//= require bootstrap-sprockets

@@ -10,33 +10,37 @@
       </ul>
     </div>
   <% end %>
+  
+    <form class="form-horizontal" action="/action_page.php">
+        <div class="form-group">
+            <div class="field">
+                <%= form.label :title %>
+                <%= form.text_field :title, id: :movie_title %>
+            </div>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title, id: :movie_title %>
-  </div>
+            <div class="field">
+                <%= form.label :description %>
+                <%= form.text_area :description, id: :movie_description %>
+            </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description, id: :movie_description %>
-  </div>
+            <div class="field">
+                <%= form.label :director %>
+                <%= form.text_field :director, id: :movie_director %>
+            </div>
 
-  <div class="field">
-    <%= form.label :director %>
-    <%= form.text_field :director, id: :movie_director %>
-  </div>
+            <div class="field">
+                <%= form.label :stars %>
+                <%= form.text_field :stars, id: :movie_stars %>
+            </div>
 
-  <div class="field">
-    <%= form.label :stars %>
-    <%= form.text_field :stars, id: :movie_stars %>
-  </div>
+            <div class="field">
+                <%= form.label :release %>
+                <%= form.datetime_select :release, id: :movie_release %>
+            </div>
 
-  <div class="field">
-    <%= form.label :release %>
-    <%= form.datetime_select :release, id: :movie_release %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+            <div class="actions">
+                <%= form.submit %>
+            </div>
+        </div>
+    </form>
 <% end %>
