@@ -76,38 +76,41 @@
 <!--signup form popup-->
 <div class="login-wrapper"  id="signup-content">
     <div class="login-content">
-        <a href="#" class="close">x</a>
-        <h3>sign up</h3>
-        <form method="post" action="signup.php">
-            <div class="row">
-                 <label for="username-2">
-                    Username:
-                    <input type="text" name="username" id="username-2" placeholder="Hugh Jackman" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required="required" />
-                </label>
-            </div>
-           
+		<a href="#" class="close">x</a>
+		
+		<h3>sign up</h3>
+		<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+		
+        <form method="post" action="signup.php">           
             <div class="row">
                 <label for="email-2">
                     your email:
-                    <input type="password" name="email" id="email-2" placeholder="" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
+					
+					<%= f.email_field :email, autofocus: true, autocomplete: "email" %>
                 </label>
             </div>
              <div class="row">
                 <label for="password-2">
-                    Password:
-                    <input type="password" name="password" id="password-2" placeholder="" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
+					Password:
+					<% if @minimum_password_length %>
+    					<em>(<%= @minimum_password_length %> characters minimum)</em>
+    				<% end %><br />
+                    <%= f.password_field :password, autocomplete: "off" %>
                 </label>
             </div>
              <div class="row">
                 <label for="repassword-2">
                     re-type Password:
-                    <input type="password" name="password" id="repassword-2" placeholder="" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
+                    <%= f.password_field :password_confirmation, autocomplete: "off" %>
                 </label>
             </div>
            <div class="row">
-             <button type="submit">sign up</button>
+			 
+			<button type="submit">sign up</button>
+			 	<%= f.submit "Sign up" %>
            </div>
-        </form>
+		</form>
+		<% end %>
     </div>
 </div>
 <!--end of signup form popup-->
@@ -206,8 +209,10 @@
 							</ul>
 						</li>                
 						<li><a href="#">Help</a></li>
-						<li class="loginLink"><a href="#">LOG In</a></li>
-						<li class="btn signupLink"><a href="#">sign up</a></li>
+						
+						<li class="loginLink"><%= link_to "LOG IN", user_session_path %></li>
+						<li class="btn signupLink">
+						<li class="btn signupLink"><%= link_to "SIGN UP", new_user_registration_path %></li>
 					</ul>
 				</div>
 			<!-- /.navbar-collapse -->
@@ -1221,7 +1226,8 @@
 			<div class="col-md-4">
 				<div class="sidebar">
 					<div class="ads">
-						<img src="uploads/ads1.png" alt="" width="336" height="296">
+						
+						<img src="<%= asset_path('uploads/ads1.png')%>" alt="" width="336" height="296">
 					</div>
 					<div class="celebrities">
 						<h4 class="sb-title">Spotlight Celebrities</h4>
