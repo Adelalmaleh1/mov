@@ -22,6 +22,7 @@
 
 <body>
 <!--preloading-->
+<!--
 <div id="preloader">
 	
 	<img class="logo"src="<%= asset_path('logo1.png')%>" alt="" width="119" height="58">
@@ -31,6 +32,7 @@
         <span></span>
     </div>
 </div>
+
 <!--end of preloading-->
 <!--login form popup-->
 <div class="login-wrapper" id="login-content">
@@ -107,7 +109,7 @@
            <div class="row">
 			 
 			<button type="submit">sign up</button>
-			 	<%= f.submit "Sign up" %>
+			 	
            </div>
 		</form>
 		<% end %>
@@ -212,7 +214,16 @@
 						
 						<li class="loginLink"><%= link_to "LOG IN", user_session_path %></li>
 						<li class="btn signupLink">
-						<li class="btn signupLink"><%= link_to "SIGN UP", new_user_registration_path %></li>
+
+						<%if user_signed_in? %>
+							
+							<li class="btn"><%= link_to "SIGN OUT", destroy_user_session_path,:method => :delete %></li>
+
+						<% else %>
+
+							<li class="btn signupLink"><%= link_to "SIGN UP", new_user_registration_path %></li>
+						<% end %>
+						
 					</ul>
 				</div>
 			<!-- /.navbar-collapse -->

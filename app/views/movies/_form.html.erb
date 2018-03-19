@@ -1,60 +1,77 @@
-<%= form_with(model: movie, local: true) do |form| %>
-  <% if movie.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
-
-      <ul>
-      <% movie.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= render 'layouts/header' %>
+    <div class="hero common-hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="hero-ct">
+                        <h1> NEW MOVIE</h1>
+                        <ul class="breadcumb">
+                            <li class="active"><a href="#">Home</a></li>
+                            <li> <span class="ion-ios-arrow-right"></span> NEW MOVIE</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  <% end %>
-  <div class="container">
-    <form class="form-horizontal">
-        <div class="form-group">
-            <label class="control-label col-sm-2" for="text-input">Tile:</label>
-            <div class="col-sm-10 input-group">    
-                <%= form.text_field :title, id: :movie_title, class: "form-control" %>
-            </div>
-          </div>
-        <div class="form-group">
-            <label class="control-label col-sm-2" for="Description">Description:</label>
-            <div class="col-sm-10 input-group">   
-                <%= form.text_area :description %>
+    <%= form_with(model: movie, local: true) do |form| %>
+    <% if movie.errors.any? %>
+        <div id="error_explanation">
+                <h2><%= pluralize(movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
+            <ul>
+                <% movie.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+    <div class="page-single movie_list">
+        <div class="container">
+            <div class="row ipad-width2">
+                <div class="col-md-8 col-sm-12 col-xs-12">
+                    <div class="">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="text-input">Tile:</label>
+                                <div class="col-sm-10 input-group">    
+                                    <%= form.text_field :title, id: :movie_title, class: "form-control" %>
+                                </div>
+                                </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="Description">Description:</label>
+                                <div class="col-sm-10 input-group">   
+                                    <%= form.text_area :description %>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="Director">Director:</label>
+                                <div class="col-sm-10 input-group">   
+                                    <%= form.text_field :director, id: :movie_director %>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="Stars">Stars:</label>
+                                <div class="col-sm-10 input-group">   
+                                    <%= form.text_field :stars, id: :movie_stars %>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="Release">Release:</label>
+                                <div class="col-sm-2 input-group">   
+                                        <%= form.date_field :release, :placeholder => 'dd/mm/yyyy', class: 'form-control' %>    
+                                </div>
+                            </div>
+                            <div class="form-group">        
+                                <div class="col-sm-10">                
+                                    <%= form.submit "Create", class: 'btn btn-default' %>
+                                    <%= link_to 'Back', movies_path, class: 'btn btn-default' %>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="form-group">
-            <label class="control-label col-sm-2" for="Director">Director:</label>
-            <div class="col-sm-10 input-group">   
-                <%= form.text_field :director, id: :movie_director %>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-2" for="Stars">Stars:</label>
-            <div class="col-sm-10 input-group">   
-                <%= form.text_field :stars, id: :movie_stars %>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-2" for="Release">Release:</label>
-            <div class="col-sm-2 input-group">   
-                    <%= form.date_field :release, :placeholder => 'dd/mm/yyyy', class: 'form-control' %>    
-            </div>
-        </div>
-        <div class="form-group">        
-            <div class="col-sm-10">                
-                <%= form.submit "Create", class: 'btn btn-default' %>
-                <%= link_to 'Back', movies_path, class: 'btn btn-default' %>
-            </div>
-        </div>
-    </form>
+    <% end %>
 </div>
-      
-    <form class="form-horizontal" action="/action_page.php">
-        <div class="form-group">
-           
-         
-        </div>
-    </form>
-<% end %>
+<%= render 'layouts/footer' %>
