@@ -22,7 +22,7 @@
 
 <body>
 <!--preloading-->
-<!--
+
 <div id="preloader">
 	
 	<img class="logo"src="<%= asset_path('logo1.png')%>" alt="" width="119" height="58">
@@ -38,19 +38,26 @@
 <div class="login-wrapper" id="login-content">
     <div class="login-content">
         <a href="#" class="close">x</a>
-        <h3>Login</h3>
+		<h3>Login</h3>
+		<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <form method="post" action="login.php">
-        	<div class="row">
-        		 <label for="username">
-                    Username:
-                    <input type="text" name="username" id="username" placeholder="Hugh Jackman" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required="required" />
-                </label>
+			<div class="row">
+				<label for="email-2">
+					Email:
+					
+					<%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+				</label>
+					    
         	</div>
            
             <div class="row">
             	<label for="password">
-                    Password:
-                    <input type="password" name="password" id="password" placeholder="******" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
+					Password:
+					<% if @minimum_password_length %>
+						<em>(<%= @minimum_password_length %> characters minimum)</em>
+					<% end %><br />
+					<%= f.password_field :password, autocomplete: "off" %>
+                    
                 </label>
             </div>
             <div class="row">
@@ -64,7 +71,8 @@
            <div class="row">
            	 <button type="submit">Login</button>
            </div>
-        </form>
+		</form>
+		<% end %>
         <div class="row">
         	<p>Or via social</p>
             <div class="social-btn-2">
@@ -83,7 +91,14 @@
 		<h3>sign up</h3>
 		<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 		
-        <form method="post" action="signup.php">           
+        <form method="post" action="signup.php">   
+			<div class="row">
+				<label for="username">
+					UserName:
+					
+					<%= f.text_field :username, autofocus: true, autocomplete: true %>
+				</label>
+			</div>        
             <div class="row">
                 <label for="email-2">
                     your email:
@@ -211,22 +226,17 @@
 							</ul>
 						</li>                
 						<li><a href="#">Help</a></li>
-						
 						<li class="loginLink"><%= link_to "LOG IN", user_session_path %></li>
 						<li class="btn signupLink">
 
 						<%if user_signed_in? %>
-							
-							<li class="btn"><%= link_to "SIGN OUT", destroy_user_session_path,:method => :delete %></li>
-
+							<li class="btn"><%= link_to "SIGN OUT", destroy_user_session_path, method: :delete %></li>
 						<% else %>
-
 							<li class="btn signupLink"><%= link_to "SIGN UP", new_user_registration_path %></li>
 						<% end %>
 						
 					</ul>
 				</div>
-			<!-- /.navbar-collapse -->
 		</nav>
 		
 		<!-- top search form -->

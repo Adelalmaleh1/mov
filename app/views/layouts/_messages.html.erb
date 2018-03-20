@@ -1,0 +1,23 @@
+<% flash.each do |key, value| %>
+  <div id="notice" class="alert alert-danger alert-dismissible fade show text-center margin-bottom-1x alert-<%= key %>"><span class="alert-close" data-dismiss="alert"></span>    
+    <ul>
+      <li>
+        <%= value %>
+      </li>
+    </ul>
+  </div> 
+<% end %>
+
+<% if @product && @product.errors.any? %>
+	  <div id="notice" class="alert alert-danger alert-dismissible fade show text-center margin-bottom-1x"><span class="alert-close" data-dismiss="alert"></span>    
+	    <ul>
+	<% @product.errors.full_messages.each do |msg| %>
+
+	      <li>
+	        <%= msg %>
+	      </li>
+ 		
+	<% end %>	
+		    </ul>
+	  </div>
+<% end %>
