@@ -23,13 +23,13 @@ class MoviesController < ApplicationController
 
   # POST /movies
   # POST /movies.json
-  def create
+    def create
 		@movie= Movie.new(movie_params)
         @movie.user = current_user
     
 		if @movie.save
 		    flash[:success] = "movie was successfully created"
-		    redirect_to movie_path(@movie)
+		    redirect_to movies_path(@movie)
 		else
 		    render 'new'
 		end
@@ -68,7 +68,7 @@ class MoviesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def movie_params
-      params.require(:movie).permit(:title, :description, :director, :stars, :release)
+      params.require(:movie).permit(:title, :description, :director, :stars, :release, :mov_rating, :Run_time)
     end
     
     def user_logged_in?

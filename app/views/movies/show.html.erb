@@ -1,29 +1,350 @@
+<%= render 'layouts/header' %>
+<div class="hero mv-single-hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-single movie-single movie_single">
+        <div class="container">
+            <div class="row ipad-width2">
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <div class="movie-img sticky-sb">
+                        <img src="<%= asset_path('uploads/movie-single.jpg')%>" alt="">
+                        <div class="movie-btn">	
+                            <div class="btn-transform transform-vertical red">
+                                <div><a href="#" class="item item-1 redbtn"> <i class="ion-play"></i> Watch Trailer</a></div>
+                                <div><a href="https://www.youtube.com/embed/o-0hcF97wy0" class="item item-2 redbtn fancybox-media hvr-grow"><i class="ion-play"></i></a></div>
+                            </div>
+                            <div class="btn-transform transform-vertical">
+                                <div><a href="#" class="item item-1 yellowbtn"> <i class="ion-card"></i> Buy ticket</a></div>
+                                <div><a href="#" class="item item-2 yellowbtn"><i class="ion-card"></i></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm-12 col-xs-12">
+                    <div class="movie-single-ct main-content">
+                        <h1 class="bd-hd"><%= @movie.title %> <span><%= @movie.release.strftime("%Y") %><%= link_to 'Edit', edit_movie_path(@movie) %></span></h1>
+                        
+                        
+                        <div class="social-btn">
+                            <a href="#" class="parent-btn"><i class="ion-heart"></i> Add to Favorite</a>
+                            <div class="hover-bnt">
+                                <a href="#" class="parent-btn"><i class="ion-android-share-alt"></i>share</a>
+                                <div class="hvr-item">
+                                    <a href="#" class="hvr-grow"><i class="ion-social-facebook"></i></a>
+                                    <a href="#" class="hvr-grow"><i class="ion-social-twitter"></i></a>
+                                    <a href="#" class="hvr-grow"><i class="ion-social-googleplus"></i></a>
+                                    <a href="#" class="hvr-grow"><i class="ion-social-youtube"></i></a>
+                                </div>
+                            </div>		
+                        </div>
+                        <div class="movie-rate">
+                            <div class="rate">
+                                <i class="ion-android-star"></i>
+                                <p><span>8.1</span> /10<br>
+                                    <span class="rv">56 Reviews</span>
+                                </p>
+                            </div>
+                            <div class="rate-star">
+                                <p>Rate This Movie:  </p>
+                                <i class="ion-ios-star"></i>
+                                <i class="ion-ios-star"></i>
+                                <i class="ion-ios-star"></i>
+                                <i class="ion-ios-star"></i>
+                                <i class="ion-ios-star"></i>
+                                <i class="ion-ios-star"></i>
+                                <i class="ion-ios-star"></i>
+                                <i class="ion-ios-star"></i>
+                                <i class="ion-ios-star-outline"></i>
+                            </div>
+                        </div>
+                        <div class="movie-tabs">
+                            <div class="tabs">
+                                <ul class="tab-links tabs-mv">
+                                    <li class="active"><a href="#overview">Overview</a></li>
+                                    <li><a href="#reviews"> Reviews</a></li>
+                                    
+                                    <li><a href="#media"> Media</a></li> 
+                                    <li><a href="#moviesrelated"> Related Movies</a></li>                        
+                                </ul>
+                                <div class="tab-content">
+                                    <div id="overview" class="tab active">
+                                        <div class="row">
+                                            <div class="col-md-8 col-sm-12 col-xs-12">
+                                                <p><%= @movie.description %></p>
+                                                <div class="title-hd-sm">
+                                                    <h4>Videos & Photos</h4>
+                                                    <a href="#" class="time">All 5 Videos & 245 Photos <i class="ion-ios-arrow-right"></i></a>
+                                                </div>
+                                                <div class="mvsingle-item ov-item">
+                                                    
+                                                    <a class="img-lightbox" data-fancybox-group="gallery" ><img src="<%= asset_path('uploads/image1.jpg')%>" alt=""></a>
 
-<p>
-  <strong>Title:</strong>
-  <%= @movie.title %>
-</p>
+                                                    
+                                                    <a class="img-lightbox" data-fancybox-group="gallery" ><img src="<%= asset_path('uploads/image3.jpg')%>" alt=""></a>
+                                                    
+                                                    <a class="img-lightbox" data-fancybox-group="gallery" ><img src="<%= asset_path('uploads/image2.jpg')%>" alt=""></a>
+                                                    <div class="vd-it">
+                                                        <img class="vd-img" src="<%= asset_path('uploads/image4.jpg')%>" alt="">
+                                                        <a class="fancybox-media hvr-grow" href="https://www.youtube.com/embed/o-0hcF97wy0"><img src="uploads/play-vd.png" alt=""></a>
+                                                    </div>
+                                                </div>
+                                                <div class="title-hd-sm">
+                                                    <h4>cast</h4>
+                                                    <a href="#" class="time">Full Cast & Crew  <i class="ion-ios-arrow-right"></i></a>
+                                                </div>
+                                                <!-- movie cast -->
+                                                <div class="mvcast-item">											
+                                                    <div class="cast-it">
+                                                        <div class="cast-left">
+                                                            <img src="<%= asset_path('uploads/cast1.jpg')%>" alt="">
+                                                            <a href="#"><%= @movie.stars %></a>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="title-hd-sm">
+                                                    <h4>User reviews</h4>
+                                                    <a href="#" class="time">See All 56 Reviews <i class="ion-ios-arrow-right"></i></a>
+                                                </div>
+                                                <!-- movie user review -->
+                                                <div class="mv-user-review-item">
+                                                    <h3>Best Marvel movie in my opinion</h3>
+                                                    <div class="no-star">
+                                                        <i class="ion-android-star"></i>
+                                                        <i class="ion-android-star"></i>
+                                                        <i class="ion-android-star"></i>
+                                                        <i class="ion-android-star"></i>
+                                                        <i class="ion-android-star"></i>
+                                                        <i class="ion-android-star"></i>
+                                                        <i class="ion-android-star"></i>
+                                                        <i class="ion-android-star"></i>
+                                                        <i class="ion-android-star"></i>
+                                                        <i class="ion-android-star last"></i>
+                                                    </div>
+                                                    <p class="time">
+                                                        17 December 2016 by <a href="#"> hawaiipierson</a>
+                                                    </p>
+                                                    <p>This is by far one of my favorite movies from the MCU. The introduction of new Characters both good and bad also makes the movie more exciting. giving the characters more of a back story can also help audiences relate more to different characters better, and it connects a bond between the audience and actors or characters. Having seen the movie three times does not bother me here as it is as thrilling and exciting every time I am watching it. In other words, the movie is by far better than previous movies (and I do love everything Marvel), the plotting is splendid (they really do out do themselves in each film, there are no problems watching it more than once.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-xs-12 col-sm-12">
+                                                <div class="sb-it">
+                                                    <h6>Director: </h6>
+                                                    <p><a href="#"><%= @movie.director %></a></p>
+                                                </div>
+                                                
+                                                <div class="sb-it">
+                                                    <h6>Stars: </h6>
+                                                    <p><a href="#"><%= @movie.director %></a></p>
+                                                </div>
+                                                <div class="sb-it">
+                                                    <h6>Genres:</h6>
+                                                    <p><a href="#">Action, </a> <a href="#"> Sci-Fi,</a> <a href="#">Adventure</a></p>
+                                                </div>
+                                                <div class="sb-it">
+                                                    <h6>Release Date:</h6>
+                                                    <p><%= @movie.release %></p>
+                                                </div>
+                                                <div class="sb-it">
+                                                    <h6>Run Time:</h6>
+                                                    <p><%= @movie.Run_time %></p>
+                                                </div>
+                                                <div class="sb-it">
+                                                    <h6>MOV Rating:</h6>
+                                                    <p><%= @movie.mov_rating %></p>
+                                                </div>
+                                                
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="reviews" class="tab review">
+                                       <div class="row">
+                                            <div class="rv-hd">
+                                                <div class="div">
+                                                    <h3>Related Movies To</h3>
+                                                        <h2>Skyfall: Quantum of Spectre</h2>
+                                                </div>
+                                                <a href="#" class="redbtn">Write Review</a>
+                                            </div>
+                                            <div class="topbar-filter">
+                                                <p>Found <span>56 reviews</span> in total</p>
+                                                <label>Filter by:</label>
+                                                <select>
+                                                    <option value="popularity">Popularity Descending</option>
+                                                    <option value="popularity">Popularity Ascending</option>
+                                                    <option value="rating">Rating Descending</option>
+                                                    <option value="rating">Rating Ascending</option>
+                                                    <option value="date">Release date Descending</option>
+                                                    <option value="date">Release date Ascending</option>
+                                                </select>
+                                            </div>
+                                            <div class="mv-user-review-item">
+                                                <div class="user-infor">
+                                                    <img src="<%= asset_path('uploads/userava1.jpg')%>" alt="">
+                                                    <div>
+                                                        <h3>Best Marvel movie in my opinion</h3>
+                                                        <div class="no-star">
+                                                            <i class="ion-android-star"></i>
+                                                            <i class="ion-android-star"></i>
+                                                            <i class="ion-android-star"></i>
+                                                            <i class="ion-android-star"></i>
+                                                            <i class="ion-android-star"></i>
+                                                            <i class="ion-android-star"></i>
+                                                            <i class="ion-android-star"></i>
+                                                            <i class="ion-android-star"></i>
+                                                            <i class="ion-android-star"></i>
+                                                            <i class="ion-android-star last"></i>
+                                                        </div>
+                                                        <p class="time">
+                                                            17 December 2016 by <a href="#"> hawaiipierson</a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <p>This is by far one of my favorite movies from the MCU. The introduction of new Characters both good and bad also makes the movie more exciting. giving the characters more of a back story can also help audiences relate more to different characters better, and it connects a bond between the audience and actors or characters. Having seen the movie three times does not bother me here as it is as thrilling and exciting every time I am watching it. In other words, the movie is by far better than previous movies (and I do love everything Marvel), the plotting is splendid (they really do out do themselves in each film, there are no problems watching it more than once.</p>
+                                            </div>
+                                            
+                                            <div class="topbar-filter">
+                                                <label>Reviews per page:</label>
+                                                <select>
+                                                    <option value="range">5 Reviews</option>
+                                                    <option value="saab">10 Reviews</option>
+                                                </select>
+                                                <div class="pagination2">
+                                                    <span>Page 1 of 6:</span>
+                                                    <a class="active" href="#">1</a>
+                                                    <a href="#">2</a>
+                                                    <a href="#">3</a>
+                                                    <a href="#">4</a>
+                                                    <a href="#">5</a>
+                                                    <a href="#">6</a>
+                                                    <a href="#"><i class="ion-arrow-right-b"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                       
+                                        <div id="media" class="tab">
+                                        <div class="row">
+                                            <div class="rv-hd">
+                                                <div>
+                                                    <h3>Videos & Photos of</h3>
+                                                        <h2>Skyfall: Quantum of Spectre</h2>
+                                                </div>
+                                            </div>
+                                            <div class="title-hd-sm">
+                                                <h4>Videos <span>(8)</span></h4>
+                                            </div>
+                                            <div class="mvsingle-item media-item">
+                                                <div class="vd-item">
+                                                    <div class="vd-it">
+                                                        <img class="vd-img" src="<%= asset_path('uploads/vd-item1.jpg')%>" alt="">
+                                                        
+                                                        <a class="fancybox-media hvr-grow"><img src="<%= asset_path('uploads/play-vd.png')%>" alt=""></a>
+                                                    </div>
+                                                    <div class="vd-infor">
+                                                        <h6> <a href="#">Trailer:  Watch New Scenes</a></h6>
+                                                        <p class="time"> 1: 31</p>
+                                                    </div>
+                                                </div>
+                                                <div class="vd-item">
+                                                    <div class="vd-it">
+                                                        <img class="vd-img" src="<%= asset_path('uploads/vd-item2.jpg')%>" alt="">
+                                                        
+                                                        <a class="fancybox-media hvr-grow"><img src="<%= asset_path('uploads/play-vd.png')%>" alt=""></a>
 
-<p>
-  <strong>Description:</strong>
-  <%= @movie.description %>
-</p>
-
-<p>
-  <strong>Director:</strong>
-  <%= @movie.director %>
-</p>
-
-<p>
-  <strong>Stars:</strong>
-  <%= @movie.stars %>
-</p>
-
-<p>
-  <strong>Release:</strong>
-  <%= @movie.release %>
-</p>
-
-<%= link_to 'Edit', edit_movie_path(@movie) %> |
-<%= link_to 'Back', movies_path %>
-</div>
+                                                    </div>
+                                                    <div class="vd-infor">
+                                                        <h6> <a href="#">Featurette: “Avengers Re-Assembled</a></h6>
+                                                        <p class="time"> 1: 03</p>
+                                                    </div>
+                                                </div>
+                                                <div class="vd-item">
+                                                    <div class="vd-it">
+                                                        <img class="vd-img" src="<%= asset_path('uploads/vd-item4.jpg')%>" alt="">
+                                                        
+                                                        <a class="fancybox-media hvr-grow"><img src="<%= asset_path('uploads/play-vd.png')%>" alt=""></a>
+                                                    </div>
+                                                    <div class="vd-infor">
+                                                        <h6> <a href="#">Interview: Scarlett Johansson</a></h6>
+                                                        <p class="time"> 3:27</p>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="title-hd-sm">
+                                                <h4>Photos <span> (21)</span></h4>
+                                            </div>
+                                            <div class="mvsingle-item">
+                                                <a class="img-lightbox"  data-fancybox-group="gallery"><img src="<%= asset_path('uploads/image11.jpg')%>" alt=""></a>
+                                                
+                                                <a class="img-lightbox"  data-fancybox-group="gallery"><img src="<%= asset_path('uploads/image3.jpg')%>" alt=""></a>
+                                                <a class="img-lightbox"  data-fancybox-group="gallery"><img src="<%= asset_path('uploads/image4.jpg')%>" alt=""></a>
+                                                <a class="img-lightbox"  data-fancybox-group="gallery"><img src="<%= asset_path('uploads/image5.jpg')%>" alt=""></a>
+                                                <a class="img-lightbox"  data-fancybox-group="gallery"><img src="<%= asset_path('uploads/image6.jpg')%>" alt=""></a>
+                                                <a class="img-lightbox"  data-fancybox-group="gallery"><img src="<%= asset_path('uploads/image7.jpg')%>" alt=""></a>
+                                                <a class="img-lightbox"  data-fancybox-group="gallery"><img src="<%= asset_path('uploads/image8.jpg')%>" alt=""></a>
+                                                <a class="img-lightbox"  data-fancybox-group="gallery"><img src="<%= asset_path('uploads/image9.jpg')%>" alt=""></a>
+                                                <a class="img-lightbox"  data-fancybox-group="gallery"><img src="<%= asset_path('uploads/image9.jpg')%>" alt=""></a>
+                                                <a class="img-lightbox"  data-fancybox-group="gallery"><img src="<%= asset_path('uploads/image10.jpg')%>" alt=""></a>
+                                                <a class="img-lightbox"  data-fancybox-group="gallery"><img src="<%= asset_path('uploads/image1.jpg')%>" alt=""></a>
+                                                <a class="img-lightbox"  data-fancybox-group="gallery"><img src="<%= asset_path('uploads/image12.jpg')%>" alt=""></a>
+                                                <a class="img-lightbox"  data-fancybox-group="gallery"><img src="<%= asset_path('uploads/image13.jpg')%>" alt=""></a>
+                                                <a class="img-lightbox"  data-fancybox-group="gallery"><img src="<%= asset_path('uploads/image14.jpg')%>" alt=""></a>
+                                                <a class="img-lightbox"  data-fancybox-group="gallery"><img src="<%= asset_path('uploads/image15.jpg')%>" alt=""></a>
+                                                <a class="img-lightbox"  data-fancybox-group="gallery"><img src="<%= asset_path('uploads/image16.jpg')%>" alt=""></a>
+                                                <a class="img-lightbox"  data-fancybox-group="gallery"><img src="<%= asset_path('uploads/image17.jpg')%>" alt=""></a>
+                                                <a class="img-lightbox"  data-fancybox-group="gallery"><img src="<%= asset_path('uploads/image18.jpg')%>" alt=""></a>
+                                                <a class="img-lightbox"  data-fancybox-group="gallery"><img src="<%= asset_path('uploads/image19.jpg')%>" alt=""></a>
+                                                <a class="img-lightbox"  data-fancybox-group="gallery"><img src="<%= asset_path('uploads/image20.jpg')%>" alt=""></a>
+                                                <a class="img-lightbox"  data-fancybox-group="gallery"><img src="<%= asset_path('uploads/image2.jpg')%>" alt=""></a>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div id="moviesrelated" class="tab">
+                                            <div class="row">
+                                                <h3>Related Movies To</h3>
+                                                <h2>Skyfall: Quantum of Spectre</h2>
+                                                <div class="topbar-filter">
+                                                <p>Found <span>12 movies</span> in total</p>
+                                                <label>Sort by:</label>
+                                                <select>
+                                                    <option value="popularity">Popularity Descending</option>
+                                                    <option value="popularity">Popularity Ascending</option>
+                                                    <option value="rating">Rating Descending</option>
+                                                    <option value="rating">Rating Ascending</option>
+                                                    <option value="date">Release date Descending</option>
+                                                    <option value="date">Release date Ascending</option>
+                                                </select>
+                                            </div>
+                                            <div class="movie-item-style-2">
+                                                
+                                                <img src="<%= asset_path('uploads/mv1.jpg')%>" alt="">
+                                                <div class="mv-item-infor">
+                                                    <h6><a href="#">oblivion <span>(2012)</span></a></h6>
+                                                    <p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
+                                                    <p class="describe">Earth's mightiest heroes must come together and learn to fight as a team if they are to stop the mischievous Loki and his alien army from enslaving humanity...</p>
+                                                    <p class="run-time"> Run Time: 2h21’    .     <span>MMPA: PG-13 </span>    .     <span>Release: 1 May 2015</span></p>
+                                                    <p>Director: <a href="#">Joss Whedon</a></p>
+                                                    <p>Stars: <a href="#">Robert Downey Jr.,</a> <a href="#">Chris Evans,</a> <a href="#">  Chris Hemsworth</a></p>
+                                                </div>
+                                            </div>
+                                            
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<%= render 'layouts/footer' %>
