@@ -24,18 +24,17 @@ class MoviesController < ApplicationController
   # POST /movies
   # POST /movies.json
   def create
-    @movie = Movie.new(movie_params)
-
-    respond_to do |format|
-      if @movie.save
-        format.html { redirect_to @movie, notice: 'Movie was successfully created.' }
-        format.json { render :show, status: :created, location: @movie }
-      else
-        format.html { render :new }
-        format.json { render json: @movie.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+		@movie= Movie.new(movie_params)
+        @movie.user = current_user
+    
+		if @movie.save
+		    flash[:success] = "movie was successfully created"
+		    redirect_to movie_path(@movie)
+		else
+		    render 'new'
+		end
+	end
+  
 
   # PATCH/PUT /movies/1
   # PATCH/PUT /movies/1.json
