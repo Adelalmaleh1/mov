@@ -1,10 +1,70 @@
-<div class= "row">
-    <% movies.each do |movie|%>
-        <div class="col-sm-6 col-md-3">
-            <div class="thumbnail">
-        <%= link_to movie.title, movie_path(movie) %>
+<%= render 'layouts/header' %>
+<div class="hero common-hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="hero-ct">
+                    <h1>Comedy</h1>
+                    <ul class="breadcumb">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li> <span class="ion-ios-arrow-right"></span> MOVIE LIST</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-      
     </div>
-  <% end %>
 </div>
+<div class="page-single movie_list">
+    <div class="container">
+        <div class="row ipad-width2">
+            <div class="col-md-8 col-sm-12 col-xs-12">
+                <div class="topbar-filter">
+                    <p>Found <span>1,608 movies</span> in total</p>
+                    <label>Sort by:</label>
+                    <select>
+                        <option value="popularity">Popularity Descending</option>
+                        <option value="popularity">Popularity Ascending</option>
+                        <option value="rating">Rating Descending</option>
+                        <option value="rating">Rating Ascending</option>
+                        <option value="date">Release date Descending</option>
+                        <option value="date">Release date Ascending</option>
+                    </select>
+                    <a href="movielist.html" class="list"><i class="ion-ios-list-outline active"></i></a>
+                    <a  href="moviegrid.html" class="grid"><i class="ion-grid"></i></a>
+                </div>
+                <% movies.each do |movie|%>
+                <div class="movie-item-style-2">
+                    
+                    <img src="<%= asset_path('uploads/mv1.jpg')%>" alt="">
+                    <div class="mv-item-infor">
+                        <h6><a href=""><%= link_to movie.title, movie_path(movie) %></a><span><%= movie.release %></span></h6>
+                        <p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
+                        <p class="describe"><td><%= movie.description %></td></p>
+                        <p class="run-time"> Run Time:       .     <span>Release: <%= movie.release.strftime("%Y") %></span></p>
+                        <p>Director: <a href="#"><%= movie.director %></a></p>
+                        <p>Stars: <a href="#"><%= movie.stars %></a></p>
+                        <td><%= link_to 'Show', movie %></td>
+                        <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
+                        <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    </div>
+                </div>
+            <% end %>
+            <div class="topbar-filter">
+                <label>Movies per page:</label>
+                <select>
+                    <option value="range">5 Movies</option>
+                    <option value="saab">10 Movies</option>
+                </select>
+                <div class="pagination2">
+                    <span>Page 1 of 2:</span>
+                    <a class="active" href="#">1</a>
+                    <a href="#">2</a>
+                    <a href="#"><i class="ion-arrow-right-b"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<%= render 'layouts/footer' %>
