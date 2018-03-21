@@ -4,7 +4,7 @@ class MoviesController < ApplicationController
   # GET /movies
   # GET /movies.json
   def index
-    @movies = Movie.all
+    @movies = Movie.order('created_at DESC')
   end
 
   # GET /movies/1
@@ -15,30 +15,33 @@ class MoviesController < ApplicationController
   # GET /movies/new
   def new
     @movie = Movie.new
+    @categories = Category.all.map{|c| [ c.name, c.id ] }
   end
 
   # GET /movies/1/edit
   def edit
+    @categories = Category.all.map{|c| [ c.name, c.id ] }
   end
 
   # POST /movies
   # POST /movies.json
-    def create
-		@movie= Movie.new(movie_params)
-        @movie.user = current_user
-    
-		if @movie.save
-		    flash[:success] = "movie was successfully created"
-		    redirect_to movies_path(@movie)
-		else
-		    render 'new'
-		end
-	end
-  
+  def create
+    @movie = current_user.movies.build(movie_params)
+    @movie.category_id = params[:category_id]
+    respond_to do |format|
+      if @movie.save
+        format.html { redirect_to @movie, notice: 'Movie was successfully created.' }
+        format.json { render :show, status: :created, location: @movie }
+      else
+        format.html { render :new }
+        format.json { render json: @movie.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
-  # PATCH/PUT /movies/1
-  # PATCH/PUT /movies/1.json
+
   def update
+    @movie.category_id = params[:category_id]
     respond_to do |format|
       if @movie.update(movie_params)
         format.html { redirect_to @movie, notice: 'Movie was successfully updated.' }
