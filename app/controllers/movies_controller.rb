@@ -1,5 +1,6 @@
 class MoviesController < ApplicationController
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
+	before_filter :add_current_user, axcept: [:index]
 
   # GET /movies
   # GET /movies.json
@@ -26,8 +27,10 @@ class MoviesController < ApplicationController
   # POST /movies
   # POST /movies.json
   def create
-    @movie = current_user.movies.build(movie_params)
+    # @movie = current_user.movies.build(movie_params)
+    @movie = Movie.new(article_params)
     @movie.category_id = params[:category_id]
+    @movie.user = current_user
     respond_to do |format|
       if @movie.save
         format.html { redirect_to @movie, notice: 'Movie was successfully created.' }
@@ -74,8 +77,11 @@ class MoviesController < ApplicationController
       params.require(:movie).permit(:title, :description, :director, :stars, :release, :mov_rating, :Run_time)
     end
     
-    def user_logged_in?
-      return true if user_signed_in?
-      redirect_to new_user_session_path, data: {confirm: "You sure" }
-    end
+    def add_current_user
+      unless user_signed_in?
+        
+        redirect_to user_session_path
+        flash[:danger] = "please sign in"
+      end
+
 end

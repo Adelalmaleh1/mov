@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-
-<html lang="en" class="no-js">
-<head>
-
-</head>
 
 <body>
-<!--preloading-->
 
 <div id="preloader">
 	
@@ -18,8 +11,6 @@
     </div>
 </div>
 
-<!--end of preloading-->
-<!--login form popup-->
 <div class="login-wrapper" id="login-content">
     <div class="login-content">
         <a href="#" class="close">x</a>
@@ -127,7 +118,9 @@
 							<span></span>
 						</div>
 					</div>
-					<a href="index.html"><img src="<%= asset_path('logo1.png')%>" alt="" width="119" height="58"></a>
+					<a>
+						<%= link_to image_tag("logo1.png"), root_path, width: "119", height: "58" %>
+					</a>
 					
 				</div>
 				<!-- Collect the nav linkss, forms, and other content for toggling -->
@@ -192,17 +185,19 @@
 					<ul class="nav navbar-nav flex-child-menu menu-right">
 						<li class="dropdown first">
 							<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
-							pages <i class="fa fa-angle-down" aria-hidden="true"></i>
+							Users <i class="fa fa-angle-down" aria-hidden="true"></i>
 							</a>
 							<ul class="dropdown-menu level1">
-								<li><a href="landing.html">Landing</a></li>
-								<li><a href="404.html">404 Page</a></li>
-								<li class="it-last"><a href="comingsoon.html">Coming soon</a></li>
+								<li><a><%= link_to "All Users", user_index_path %></a></li>
+								
 							</ul>
 						</li>                
 						<li><a href="#">Help</a></li>
 						<li class="loginLink"><%= link_to "LOG IN", user_session_path %></li>
 						<li class="btn signupLink">
+
+						
+
 
 						<%if user_signed_in? %>
 							<li class="btn"><%= link_to "SIGN OUT", destroy_user_session_path, method: :delete %></li>
@@ -1460,7 +1455,7 @@
 				<div class="sidebar">
 					<div class="sb-facebook sb-it">
 						<h4 class="sb-title">Find us on Facebook</h4>
-						<iframe src="" data-src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fhaintheme%2F%3Ffref%3Dts&tabs=timeline&width=300&height=315px&small_header=true&adapt_container_width=false&hide_cover=false&show_facepile=true&appId" width="300" height="315" style="border:none;overflow:hidden" ></iframe>
+						
 					</div>
 					<div class="sb-twitter sb-it">
 						<h4 class="sb-title">Tweet to us</h4>

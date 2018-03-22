@@ -12,9 +12,9 @@
 //
 //= require jquery.main
 //= require custom.main
-//= require custom.main
-//= require plugins.main
-//= require plugins.main
+//= require plugins
+//= require plugins2.main
+//= require cable
 //= require_tree .
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker

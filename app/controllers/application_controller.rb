@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
      def configure_permitted_parameters
        devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :email, :password, :password_confirmation])
      end
+     def current_user
+      return unless session[:user_id]
+      @current_user ||= User.find(session[:user_id])
+    end
   
   
   end
