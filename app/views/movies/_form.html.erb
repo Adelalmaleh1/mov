@@ -81,6 +81,12 @@
                                         <%= form.date_field :release, :placeholder => 'dd/mm/yyyy', class: 'form-control' %>    
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="Image">Image:</label>
+                                <div class="col-sm-2 input-group">   
+                                        <%= form.file_field :image %>
+                                </div>
+                            </div>
                             <div class="form-group">        
                                 <div class="col-sm-6 text-center">                
                                     <%= form.submit "Create", class: 'btn btn-default' %>

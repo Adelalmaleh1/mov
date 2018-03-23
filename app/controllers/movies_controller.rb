@@ -22,7 +22,7 @@ class MoviesController < ApplicationController
 
     def create
     
-        @movie = Movie.new(article_params)
+        @movie = Movie.new(movie_params)
         @movie.category_id = params[:category_id]
         @movie.user = current_user
         respond_to do |format|
@@ -89,7 +89,7 @@ class MoviesController < ApplicationController
     end
 
     def movie_params
-        params.require(:movie).permit(:title, :description, :director, :stars, :release, :mov_rating, :Run_time)
+        params.require(:movie).permit(:title, :description, :director, :stars, :release, :mov_rating, :Run_time, :image)
     end
     
     def add_current_user
