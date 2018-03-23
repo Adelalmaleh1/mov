@@ -26,6 +26,7 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="col-md-8 col-sm-12 col-xs-12">
                     <div class="movie-single-ct main-content">
                         <h1 class="bd-hd"><%= @movie.title %> <span><%= @movie.release.strftime("%Y") %><%= link_to 'Edit', edit_movie_path(@movie) %></span></h1>
@@ -33,6 +34,12 @@
                         
                         <div class="social-btn">
                             <a href="#" class="parent-btn"><i class="ion-heart"></i> Add to Favorite</a>
+                            <li><%= link_to "favorite",   favorite_movie_path(@movie, type: "favorite"), method: :put %></li>
+                            <li><%= link_to "unfavorite", favorite_movie_path(@movie, type: "unfavorite"), method: :put %></li>
+
+                                <!-- top search form <%= link_to favorite_movie_path("#{@movie.id}"), method: :put do %>
+                                    <span class="glyphicon glyphicon-heart"></span>
+                                <% end %>--> 
                             <div class="hover-bnt">
                                 <a href="#" class="parent-btn"><i class="ion-android-share-alt"></i>share</a>
                                 <div class="hvr-item">

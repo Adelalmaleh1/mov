@@ -195,11 +195,8 @@
 						<li><a href="#">Help</a></li>
 						<li class="loginLink"><%= link_to "LOG IN", user_session_path %></li>
 						<li class="btn signupLink">
-
 						
-
-
-						<%if user_signed_in? %>
+						<% if user_signed_in? %>
 							<li class="btn"><%= link_to "SIGN OUT", destroy_user_session_path, method: :delete %></li>
 						<% else %>
 							<li class="btn signupLink"><%= link_to "SIGN UP", new_user_registration_path %></li>

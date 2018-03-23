@@ -12,6 +12,8 @@ get 'users' => 'users#index', as: :user_index
 devise_scope :user do  
     get '/users/sign_out' => 'devise/sessions#destroy'     
 end
-resources :movies
+resources :movies do
+    put :favorite, on: :member
+end
     root 'welcome#index'  
 end
