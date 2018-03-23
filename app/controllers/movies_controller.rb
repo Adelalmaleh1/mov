@@ -4,6 +4,7 @@ class MoviesController < ApplicationController
 
     def index
         @movies = Movie.order('created_at DESC')
+        @movies = Movie.paginate(:per_page => 2, :page => params[:page])
     end
 
     def show
@@ -21,7 +22,6 @@ class MoviesController < ApplicationController
     end
 
     def create
-    
         @movie = Movie.new(movie_params)
         @movie.category_id = params[:category_id]
         @movie.user = current_user
@@ -64,7 +64,7 @@ class MoviesController < ApplicationController
           # Type missing, nothing happens
           redirect_to :back, notice: 'Nothing happened.'
         end
-      end
+    end
     
     
 
@@ -76,11 +76,6 @@ class MoviesController < ApplicationController
             format.json { head :no_content }
         end
     end
-
-    
-        
-
-
 
     private
    
@@ -98,6 +93,6 @@ class MoviesController < ApplicationController
         redirect_to user_session_path
         flash[:danger] = "please sign in"
     end
-end
+    end
 
 end
