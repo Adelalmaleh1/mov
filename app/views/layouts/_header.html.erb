@@ -9,98 +9,102 @@
 <div class="login-wrapper" id="login-content">
     <div class="login-content">
         <a href="#" class="close">x</a>
-        <h3>Login</h3>
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+		<h3>Login</h3>
+		<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <form method="post" action="login.php">
+			<div class="row">
+				<label for="email-2">
+					Email:
+					<%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+				</label>
+					    
+        	</div>
             <div class="row">
-                <label for="email-2">
-                    Email:
-                    
-                    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-                </label>
-                        
-            </div>
-            
-            <div class="row">
-                <label for="password">
-                    Password:
-                    <% if @minimum_password_length %>
-                        <em>(<%= @minimum_password_length %> characters minimum)</em>
-                    <% end %><br />
-                    <%= f.password_field :password, autocomplete: "off" %>
+            	<label for="password">
+					Password:
+					<% if @minimum_password_length %>
+						<em>(<%= @minimum_password_length %> characters minimum)</em>
+					<% end %><br />
+					<%= f.password_field :password, autocomplete: "off" %>
                     
                 </label>
             </div>
             <div class="row">
-                <div class="remember">
-                    <div>
-                        <input type="checkbox" name="remember" value="Remember me"><span>Remember me</span>
-                    </div>
-                    <a href="#">Forget password ?</a>
-                </div>
+            	<div class="remember">
+					<div>
+						<input type="checkbox" name="remember" value="Remember me"><span>Remember me</span>
+					</div>
+            		<a href="#">Forget password ?</a>
+            	</div>
             </div>
-            <div class="row">
-                <button type="submit">Login</button>
-            </div>
-        </form>
-        <% end %>
+           <div class="row">
+           	 <button type="submit">Login</button>
+           </div>
+		</form>
+		<% end %>
         <div class="row">
-            <p>Or via social</p>
+        	<p>Or via social</p>
             <div class="social-btn-2">
-                <a class="fb" href="#"><i class="ion-social-facebook"></i>Facebook</a>
-                <a class="tw" href="#"><i class="ion-social-twitter"></i>twitter</a>
+            	<a class="fb" href="#"><i class="ion-social-facebook"></i>Facebook</a>
+            	<a class="tw" href="#"><i class="ion-social-twitter"></i>twitter</a>
             </div>
         </div>
     </div>
 </div>
-
+<!--end of login form popup-->
+<!--signup form popup-->
 <div class="login-wrapper"  id="signup-content">
     <div class="login-content">
-        <a href="#" class="close">x</a>
-        
-        <h3>sign up</h3>
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        
+		<a href="#" class="close">x</a>
+		
+		<h3>sign up</h3>
+		<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+		
         <form method="post" action="signup.php">   
-            <div class="row">
-                <label for="username">
-                    UserName:
-                    
-                    <%= f.text_field :username, autofocus: true, autocomplete: true %>
-                </label>
-            </div>        
+			<div class="row">
+				<label for="username">
+					UserName:
+					
+					<%= f.text_field :username, autofocus: true, autocomplete: true %>
+				</label>
+			</div>        
             <div class="row">
                 <label for="email-2">
                     your email:
-                    
-                    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+					
+					<%= f.email_field :email, autofocus: true, autocomplete: "email" %>
                 </label>
             </div>
-                <div class="row">
+             <div class="row">
                 <label for="password-2">
-                    Password:
-                    <% if @minimum_password_length %>
-                        <em>(<%= @minimum_password_length %> characters minimum)</em>
-                    <% end %><br />
+					Password:
+					<% if @minimum_password_length %>
+    					<em>(<%= @minimum_password_length %> characters minimum)</em>
+    				<% end %><br />
                     <%= f.password_field :password, autocomplete: "off" %>
                 </label>
             </div>
-                <div class="row">
+            <div class="row">
                 <label for="repassword-2">
                     re-type Password:
                     <%= f.password_field :password_confirmation, autocomplete: "off" %>
                 </label>
             </div>
-            <div class="row">
-                
-            <button type="submit">sign up</button>
-                    
-            </div>
-        </form>
-        <% end %>
+			<div class="row">
+                    Image: <br>
+                    <%= f.file_field :image %>
+            </div><br>
+
+           <div class="row">
+			 
+			<button type="submit">sign up</button>
+			 	
+           </div>
+		</form>
+		<% end %>
     </div>
 </div>
-    
+<!--end of signup form popup-->
 <header class="ht-header">
 	<div class="container">
 		<nav class="navbar navbar-default navbar-custom">
@@ -153,7 +157,7 @@
 							<ul class="dropdown-menu level1">
 								<li><% Category.all.each do |category|%>
 									<li><%= link_to "#{category.name}", category_path(category) %></li>
-								<%end %>
+									<%end %>
 							</ul>
 						</li>
 						<li class="dropdown first">
@@ -181,19 +185,18 @@
 					<ul class="nav navbar-nav flex-child-menu menu-right">
 						<li class="dropdown first">
 							<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
-							pages <i class="fa fa-angle-down" aria-hidden="true"></i>
+							Users <i class="fa fa-angle-down" aria-hidden="true"></i>
 							</a>
 							<ul class="dropdown-menu level1">
-								<li><a href="landing.html">Landing</a></li>
-								<li><a href="404.html">404 Page</a></li>
-								<li class="it-last"><a href="comingsoon.html">Coming soon</a></li>
+								<li><a><%= link_to "All Users", user_index_path %></a></li>
+								
 							</ul>
 						</li>                
 						<li><a href="#">Help</a></li>
 						<li class="loginLink"><%= link_to "LOG IN", user_session_path %></li>
 						<li class="btn signupLink">
-
-						<%if user_signed_in? %>
+						
+						<% if user_signed_in? %>
 							<li class="btn"><%= link_to "SIGN OUT", destroy_user_session_path, method: :delete %></li>
 						<% else %>
 							<li class="btn signupLink"><%= link_to "SIGN UP", new_user_registration_path %></li>

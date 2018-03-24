@@ -89,12 +89,17 @@
                     <%= f.password_field :password, autocomplete: "off" %>
                 </label>
             </div>
-             <div class="row">
+            <div class="row">
                 <label for="repassword-2">
                     re-type Password:
                     <%= f.password_field :password_confirmation, autocomplete: "off" %>
                 </label>
             </div>
+			<div class="row">
+                    Image: <br>
+                    <%= f.file_field :image %>
+            </div><br>
+
            <div class="row">
 			 
 			<button type="submit">sign up</button>

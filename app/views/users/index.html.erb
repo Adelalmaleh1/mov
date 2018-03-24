@@ -35,7 +35,7 @@
                 <% @users.each do |user| %>
                 <div class="movie-item-style-2">
                     
-                    <img src="<%= asset_path('uploads/mv1.jpg')%>" alt="">
+                    <%= image_tag user.image.url(:medium) %>
                     <div class="mv-item-infor">
                         <h6><%= link_to user.username, user_path(user) %></a></h6>
                         

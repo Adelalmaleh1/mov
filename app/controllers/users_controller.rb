@@ -2,6 +2,7 @@ class UsersController < ApplicationController
     before_action :current_user, unless: :devise_controller?
     before_action :authenticate_user!, if: :devise_controller?
     def index
+        @users = User.order('created_at DESC')
         @users = User.paginate(:per_page => 2, :page => params[:page])
     end
     
