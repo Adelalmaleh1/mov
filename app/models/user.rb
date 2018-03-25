@@ -2,9 +2,14 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
     has_many :movies
-    has_many :favorite_movies
+    has_many :favorite_movies, dependent: :destroy
     has_many :favorites, through: :favorite_movies, source: :movie
-  
+    
+    def favorite_for(movie)
+      favorite_movies.where(movie: movie).first
+    end
+
+
     devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 

@@ -8,12 +8,18 @@ class MoviesController < ApplicationController
     end
 
     def show
-        @movie = Movie.find(params[:id])
+        
+        @movie = Movie.find(params[:movie_id] || params[:id])
+
+        @favorite = current_user.favorite_for(@movie)
+
+        @user = User.find(@movie.user_id)
     end
 
   
     def new
         @movie = Movie.new
+        
         @categories = Category.all.map{|c| [ c.name, c.id ] }
     end
 
@@ -22,20 +28,17 @@ class MoviesController < ApplicationController
     end
 
     def create
-        @movie = Movie.new(movie_params)
+		@movie = Movie.new(movie_params)
         @movie.category_id = params[:category_id]
-        @movie.user = current_user
-        respond_to do |format|
-            if @movie.save
-                format.html { redirect_to @movie, notice: 'Movie was successfully created.' }
-                format.json { render :show, status: :created, location: @movie }
-            else
-                format.html { render :new }
-                format.json { render json: @movie.errors, status: :unprocessable_entity }
-            end
-        end
+        @movie.user = current_user        
+		if @movie.save
+		flash[:success] = "Movie was successfully created"
+		redirect_to movies_path(@mvoie)
+		else
+		render 'new'
+		end
     end
-
+    
 
     def update
         @movie.category_id = params[:category_id]
@@ -50,21 +53,22 @@ class MoviesController < ApplicationController
         end
     end
 
-    def favorite
-        type = params[:type]
-        if type == "favorite"
-          current_user.favorites << @movie
-          redirect_to :back, notice: 'You favorited #{@movie.title}'
+    # def favorite
+    #     @movie = Movie.find(params[:id])
+    #     type = params[:type]
+    #     if type == "favorite"
+    #       current_user.favorites << @movie
+    #       redirect_to :back, notice: 'You favorited #{@movie.name}'
     
-        elsif type == "unfavorite"
-          current_user.favorites.delete(@movie)
-          redirect_to :back, notice: 'Unfavorited #{@movie.title}'
+    #     elsif type == "unfavorite"
+    #       current_user.favorites.delete(@movie)
+    #       redirect_to :back, notice: 'Unfavorited #{@movie.name}'
     
-        else
-          # Type missing, nothing happens
-          redirect_to :back, notice: 'Nothing happened.'
-        end
-    end
+    #     else
+    #       # Type missing, nothing happens
+    #       redirect_to :back, notice: 'Nothing happened.'
+    #     end
+    # end
     
     
 
