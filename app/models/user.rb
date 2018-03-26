@@ -6,7 +6,7 @@ class User < ApplicationRecord
     has_many :favorites, through: :favorite_movies, source: :movie
     
     def favorite_for(movie)
-      favorite_movies.where(movie: movie).first
+      favorites.where(movie: movie).first
     end
 
 

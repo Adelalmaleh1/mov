@@ -9,9 +9,9 @@ class MoviesController < ApplicationController
 
     def show
         
-        @movie = Movie.find(params[:movie_id] || params[:id])
+        # @movie = Movie.find(params[:movie_id] || params[:id])
 
-        @favorite = current_user.favorite_for(@movie)
+        # @favorite = current_user.favorite_for(@movie)
 
         @user = User.find(@movie.user_id)
     end

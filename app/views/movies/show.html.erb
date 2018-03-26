@@ -35,13 +35,13 @@
                         <div class="social-btn">
                             <a href="#" class="parent-btn"><i class="ion-heart"></i> Add to Favorite</a>
                             
-                                <% if current_user %>
+                                
                                     
                                     
                                     <%= button_to "Favorite", movie_favorites_path(@movie), method: :post, class: "ion-heart" %>
 
-                                    <%= button_to "Unfavorite", movie_favorite_path(@favorite.id), method: :delete, class: "ion-heart" %>
-                                <% end %>
+                                    <%= button_to "Unfavorite", movie_favorite_path(@favorite), method: :delete, class: "ion-heart" %>
+                                
                                 
                                
                             <div class="hover-bnt">
