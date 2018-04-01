@@ -18,6 +18,8 @@ class User < ApplicationRecord
         :large => "400x400>",
         :medium => "300x300>",
         :thumb => "100x100#"
-        }
+        },
+        :default_url => "123.jpg"
+        
         validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 end

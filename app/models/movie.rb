@@ -7,11 +7,14 @@ class Movie < ApplicationRecord
         has_many :favorited_by, through: :favorite_movies, source: :user 
         has_many :reviews
    
-    has_attached_file :image, :styles => {
-        :large => "400x400>",
-        :medium => "300x300>",
-        :thumb => "100x100#"
-    }
+    has_attached_file   :image, :styles => {
+                        :large => "400x400>",
+                        :medium => "300x300>",
+                        :thumb => "100x100#"
+                        },
+                        :default_url => "movie.png"
+                        
+
 
     # Validation:
 
