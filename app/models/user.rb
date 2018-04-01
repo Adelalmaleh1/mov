@@ -4,7 +4,8 @@ class User < ApplicationRecord
     has_many :movies
     has_many :favorite_movies, dependent: :destroy
     has_many :favorites, through: :favorite_movies, source: :movie
-    
+    has_many :reviews, dependent: :destroy 
+
     def favorite_for(movie)
       favorites.where(movie: movie).first
     end

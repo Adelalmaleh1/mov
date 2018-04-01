@@ -1,26 +1,51 @@
-<h2>Log in</h2>
+<%= render 'layouts/header' %>
+    <div class="hero common-hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="hero-ct">
+                        <h1> Sign Up</h1>
+                        <ul class="breadcumb">
+                            <li class="active"><a href="#">Home</a></li>
+                            <li> <span class="ion-ios-arrow-right"></span> Sign Up</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+
+    <div class="page-single movie_list">
+        <div class="container">
+            <div class="row ipad-width2">
+                <div class="col-md-8 col-sm-12 col-xs-12">
+                    <div class="">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="text-input">Email:</label>
+                                <div class="col-sm-10 input-group">    
+                                     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+                                </div>
+                                </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="Description">Password:</label>
+                                <div class="col-sm-10 input-group">   
+                                    <%= f.password_field :password, autocomplete: "off" %>
+                                </div>
+                            </div>
+                           <div class="row">
+                             <button type="submit">Login</button>
+                           </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <% end %>
+</div>
+<%= render 'layouts/footer' %>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
+ 
 <% end %>
-
-<%= render "devise/shared/links" %>
