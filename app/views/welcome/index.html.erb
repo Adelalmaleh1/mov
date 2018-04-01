@@ -162,7 +162,7 @@
 							<ul class="dropdown-menu level1">
 								<li><% Category.all.each do |category|%>
 									<li><%= link_to "#{category.name}", category_path(category) %></li>
-									<%end %>
+								<%end %>
 							</ul>
 						</li>
 						<li class="dropdown first">
@@ -187,17 +187,26 @@
 							</ul>
 						</li>
 					</ul>
+
 					<ul class="nav navbar-nav flex-child-menu menu-right">
-						<li class="dropdown first">
-							<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
-							Users <i class="fa fa-angle-down" aria-hidden="true"></i>
-							</a>
-							<ul class="dropdown-menu level1">
-								<li><a><%= link_to "All Users", user_index_path %></a></li>
-								
-							</ul>
-						</li>                
-						<li><a href="#">Help</a></li>
+						<% if current_user %>            
+							<li class="dropdown first">
+								<a class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+									<%= image_tag(current_user.image.url(:thumb), class: "round-image-50") %>
+									
+								</a>
+								<ul class="dropdown-menu level1">
+									<% if current_user.admin? %>
+										<li><a><%= link_to "All Users", user_index_path %></a></li>
+									<% end %>
+									<li><a><%= link_to "Edit Account", edit_user_registration_path %></a></li>
+									
+								</ul>
+							</li>  
+						
+						
+						<li><%= link_to current_user.username, user_path(current_user) %> </li>
+						<% end %>
 						<li class="loginLink"><%= link_to "LOG IN", user_session_path %></li>
 						<li class="btn signupLink">
 						
@@ -210,7 +219,9 @@
 					</ul>
 				</div>
 		</nav>
-		
+		<li class="round-image-50">
+			
+		</li>
 		<!-- top search form -->
 		<div class="top-search">
 			<select>
@@ -365,9 +376,10 @@
 				<div class="tabs">
 					<ul class="tab-links">
 						<li class="active"><a href="#tab1"></a></li>
-						<li><a href="#tab2"> #Coming soon</a></li>
-						<li><a href="#tab3">  #Top rated  </a></li>
-						<li><a href="#tab4"> #Most reviewed</a></li>                        
+						<li><% Category.all.each do |category|%>
+							<li><a href="tab2"><%= link_to "##{category.name}", category_path(category) %></a></li>
+						<%end %>
+						               
 					</ul>
 				    <div class="tab-content">
 				        <div id="tab1" class="tab active">

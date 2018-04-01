@@ -17,7 +17,7 @@ class User < ApplicationRecord
     has_attached_file :image, :styles => {
         :large => "400x400>",
         :medium => "300x300>",
-        :thumb => "100x100#"
+        :thumb => "50x50#"
         },
         :default_url => "123.jpg"
         

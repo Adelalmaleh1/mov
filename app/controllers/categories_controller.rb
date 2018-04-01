@@ -8,6 +8,7 @@ class CategoriesController < ApplicationController
     def show
         @category = Category.find(params[:id])
         @category_movies = @category.movies
+        @movies = Movie.paginate(:per_page => 5, :page => params[:page])
     end
 
     def new
