@@ -40,7 +40,7 @@
                     <div class="mv-item-infor">
                     
                         <h6><a href=""><%= link_to movie.title, movie_path(movie) %></a><span><%= movie.release %></span></h6>
-                        <p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
+                        <p class="rate"><i class="ion-android-star"></i><span><%= movie.mov_rating %></span> /10</p>
                         <p class="describe"><td><%= movie.description %></td></p>
                         <p class="run-time"> Run Time:       .     <span>Release: <%= movie.release.strftime("%Y") %></span></p>
                         <p>Director: <a href="#"><%= movie.director %></a></p>

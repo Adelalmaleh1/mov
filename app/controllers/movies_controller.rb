@@ -4,11 +4,14 @@ class MoviesController < ApplicationController
 
     def index
         @movies = Movie.order('created_at DESC')
-        @movies = Movie.paginate(:per_page => 10, :page => params[:page])
+        @movies = Movie.paginate(:per_page => 3, :page => params[:page])
+
     end
 
     def show
         @reviews = Review.where(movie_id: @movie.id).order("created_at DESC")
+        @reviews = Review.paginate(:per_page => 10, :page => params[:page])
+        
         # @movie = Movie.find(params[:movie_id] || params[:id])
 
         # @favorite = current_user.favorite_for(@movie)

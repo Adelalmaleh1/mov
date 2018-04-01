@@ -58,8 +58,8 @@
                         <div class="movie-rate">
                             <div class="rate">
                                 <i class="ion-android-star"></i>
-                                <p><span>8.1</span> /10<br>
-                                    <span class="rv">56 Reviews</span>
+                                <p><span><%= @movie.mov_rating %></span> /10<br>
+                                    <span class="rv"><%= @reviews.count %> Reviews</span>
                                 </p>
                             </div>
                             <div class="rate-star">
@@ -122,8 +122,12 @@
                                                 </div>
                                                 <div class="title-hd-sm">
                                                     <h4>User reviews</h4>
-                                                    <a href="#" class="time">See All <%= Review.count %> Reviews <i class="ion-ios-arrow-right"></i></a>
+                                                    <a href="#" class="time">See All <%= @reviews.count %> Reviews <i class="ion-ios-arrow-right"></i></a>
                                                 </div>
+                                                <%if @reviews.blank?%>
+                                                  <h3>No reviews yet, would you like to add the first!</h3>
+                                                  <%= link_to "Write Review", new_movie_review_path(@movie), class: "btn btn-info" %>
+                                                <% else %>
                                                 <% @reviews.each do |review| %>
                                                 <!-- movie user review -->
                                                 <div class="mv-user-review-item">
@@ -136,6 +140,7 @@
                                                     </p>
                                                     <p><%= review.comment %></p>
                                                 </div>
+                                            <% end %>
                                             <% end %>
                                             </div>
                                             <div class="col-md-4 col-xs-12 col-sm-12">
@@ -177,12 +182,13 @@
                                             <div class="rv-hd">
                                                 <div class="div">
                                                     <h3>Related Movies To</h3>
-                                                        <h2>Skyfall: Quantum of Spectre</h2>
+                                                        <h2><%= @movie.title %></h2>
                                                 </div>
-                                                <a href="#" class="redbtn">Write Review</a>
+                                                <%= link_to "Write Review", new_movie_review_path(@movie), class: "redbtn" %>
+
                                             </div>
                                             <div class="topbar-filter">
-                                                <p>Found <span>56 reviews</span> in total</p>
+                                                <p>Found <span><%= @reviews.count %> Reviews</span> in total</p>
                                                 <label>Filter by:</label>
                                                 <select>
                                                     <option value="popularity">Popularity Descending</option>
@@ -193,30 +199,26 @@
                                                     <option value="date">Release date Ascending</option>
                                                 </select>
                                             </div>
+                                            <% @reviews.each do |review| %>
                                             <div class="mv-user-review-item">
                                                 <div class="user-infor">
                                                     <img src="<%= asset_path('uploads/userava1.jpg')%>" alt="">
                                                     <div>
-                                                        
-                                                        <div class="no-star">
-                                                            <i class="ion-android-star"></i>
-                                                            <i class="ion-android-star"></i>
-                                                            <i class="ion-android-star"></i>
-                                                            <i class="ion-android-star"></i>
-                                                            <i class="ion-android-star"></i>
-                                                            <i class="ion-android-star"></i>
-                                                            <i class="ion-android-star"></i>
-                                                            <i class="ion-android-star"></i>
-                                                            <i class="ion-android-star"></i>
-                                                            <i class="ion-android-star last"></i>
-                                                        </div>
+                                                    
+                                                        <% review.rating.to_i.times do %>
+                                                            <span class="no-star glyphicon glyphicon-star"></span>
+                                                        <% end %>
                                                         <p class="time">
-                                                            17 December 2016 by <a href="#"> hawaiipierson</a>
+                                                            <%= review.created_at.strftime("%Y-%m-%d") %> <a href="#"> 
+                                                                <%= link_to @movie.user.username, user_path(current_user) %></a>
                                                         </p>
+                                                    
+                                                        <p><%= review.comment %></p>
                                                     </div>
+
                                                 </div>
-                                                <p>This is by far one of my favorite movies from the MCU. The introduction of new Characters both good and bad also makes the movie more exciting. giving the characters more of a back story can also help audiences relate more to different characters better, and it connects a bond between the audience and actors or characters. Having seen the movie three times does not bother me here as it is as thrilling and exciting every time I am watching it. In other words, the movie is by far better than previous movies (and I do love everything Marvel), the plotting is splendid (they really do out do themselves in each film, there are no problems watching it more than once.</p>
                                             </div>
+                                            <% end %>
                                             
                                             <div class="topbar-filter">
                                                 <label>Reviews per page:</label>
@@ -225,14 +227,7 @@
                                                     <option value="saab">10 Reviews</option>
                                                 </select>
                                                 <div class="pagination2">
-                                                    <span>Page 1 of 6:</span>
-                                                    <a class="active" href="#">1</a>
-                                                    <a href="#">2</a>
-                                                    <a href="#">3</a>
-                                                    <a href="#">4</a>
-                                                    <a href="#">5</a>
-                                                    <a href="#">6</a>
-                                                    <a href="#"><i class="ion-arrow-right-b"></i></a>
+                                                     <span><%= will_paginate @reviews %></span>
                                                 </div>
                                             </div>
                                         </div>
