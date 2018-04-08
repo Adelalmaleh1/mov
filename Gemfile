@@ -19,8 +19,10 @@ gem 'bootstrap-datepicker-rails'
 gem 'autoprefixer-rails'
 gem "paperclip", "~> 5.0.0"
 gem 'will_paginate', '~> 3.1'
-gem 'rails_admin', '~> 1.3'
-
+gem "rails_admin", "~> 1.3"
+gem "capistrano"
+gem "capistrano-rails"
+gem "capistrano-bundler"
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13'
